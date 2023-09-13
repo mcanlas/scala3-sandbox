@@ -21,6 +21,9 @@ object TestApp extends App {
     case object Second extends PersonSealedTrait
     case object Third extends PersonSealedTrait
 
+  // minimization seems to be:
+  // a) the key side of the map needs to be two fields (a tuple2)
+  // b) one member of the tuple must be a sealed trait; not at enum
   lazy val tupleKeyMap = Map(
     (NumberEnum.Singular, PersonSealedTrait.First) -> "apple",
     (NumberEnum.Plural, PersonSealedTrait.Third) -> "zapple"
