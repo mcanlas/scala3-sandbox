@@ -1,18 +1,8 @@
 object TestApp extends App {
-  enum NumberEnum:
-    case Singular
-    case Plural
-
   enum PersonEnum:
     case First
     case Second
     case Third
-
-  sealed trait NumberSealedTrait
-
-  object NumberSealedTrait:
-    case object Singular extends NumberSealedTrait
-    case object Plural extends NumberSealedTrait
 
   sealed trait PersonSealedTrait
 
@@ -25,8 +15,8 @@ object TestApp extends App {
   // a) the key side of the map needs to be two fields (a tuple2)
   // b) one member of the tuple must be a sealed trait; not at enum
   lazy val tupleKeyMap = Map(
-    (NumberEnum.Singular, PersonSealedTrait.First) -> "apple",
-    (NumberEnum.Plural, PersonSealedTrait.Third) -> "zapple"
+    ("apple", PersonSealedTrait.First) -> "apple",
+    ("notapple", PersonSealedTrait.Third) -> "zapple"
   )
 
   // scala3 compiler complains that union of first | third is required, but person was given
