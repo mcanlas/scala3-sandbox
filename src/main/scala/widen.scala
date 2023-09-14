@@ -19,8 +19,10 @@ object TestApp extends App {
     ("notapple", PersonSealedTrait.Third) -> "zapple"
   )
 
-  // scala3 compiler complains that union of first | third is required, but person was given
+  // possible bug or confusing intuition:
+  //   - inferred type of map's key does not match type given to pattern in case match
+  //   - scala3 compiler complains that union of first | third is required, but person sealed trait was given from `p`
   tupleKeyMap.map { case ((n, p), _) =>
-    tupleKeyMap(n -> p)
+    tupleKeyMap.apply(n -> p)
   }
 }
