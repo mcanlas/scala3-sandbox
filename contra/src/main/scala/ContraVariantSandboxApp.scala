@@ -17,9 +17,9 @@ object Encoder:
           fa.encode(f(x))
 
   extension[F[_] : Contravariant, A] (fa: F[A])
-    def contramap[AA](f: AA => A): Unit =
-      println("postfix!")
+    def demandContravariance: Unit =
+      println("done!!")
 
 object ContraVariantSandboxApp extends App:
   summon[Encoder[String, String]]
-    .contramap((n: Int) => n.toString)
+    .demandContravariance
