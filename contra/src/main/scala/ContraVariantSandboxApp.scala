@@ -9,6 +9,7 @@ object Encoder:
     def encode(x: String): String =
       x + x
 
+  // when written Encoder[*, Z], this lookup starts to fail. why?
   given [Z]: Contravariant[Encoder[Z, *]] with
     def contramap[A, B](fa: Encoder[Z, A])(f: B => A): Encoder[Z, B] =
       new Encoder[Z, B]:
